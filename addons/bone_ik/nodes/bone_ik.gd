@@ -21,7 +21,6 @@ signal child_bone_replaced(previous: BoneIK, current: BoneIK)
 
 ## If [code]true[/code], it will attempt to use the first child bone to discover length and angle.
 ## [br][br]
-
 ## In case no child bone exist or it's [code]false[/code], it will use and show
 ## a bone with [member bone_length] and [member bone_angle].
 @export var autocalculate_length_and_angle: bool = true:
@@ -365,9 +364,19 @@ func _update_shape_color(bone_shape: Polygon2D, bone_outline_shape: Polygon2D) -
 	var bone_color2: Color = editor_settings.get_setting("editors/2d/bone_color2")
 	
 	if is_pose_modified:
-		bone_shape.vertex_colors = [bone_ik_color, bone_ik_color, bone_ik_color, bone_ik_color]
+		bone_shape.vertex_colors = [
+			bone_ik_color,
+			bone_ik_color,
+			bone_ik_color,
+			bone_ik_color
+		]
 	else:
-		bone_shape.vertex_colors = [bone_color1, bone_color2, bone_color1, bone_color2]
+		bone_shape.vertex_colors = [
+			bone_color1,
+			bone_color2,
+			bone_color1,
+			bone_color2
+		]
 
 	var bone_outline_color: Color = editor_settings.get_setting("editors/2d/bone_outline_color")
 	var bone_selected_color: Color = editor_settings.get_setting("editors/2d/bone_selected_color")
