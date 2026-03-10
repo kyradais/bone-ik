@@ -105,14 +105,13 @@ func _draw_angle_constraints(
 	localspace: bool,
 	inverted: bool,
 ) -> void:
-	if not Engine.is_editor_hint():
-		return
-	
 	if not main_bone:
 		return
-	
-	if not EditorInterface.has_method("get_editor_settings"):
-		queue_redraw()
+		
+	var editor = null
+	if Engine.is_editor_hint():
+		editor = Engine.get_singleton("EditorInterface")
+	if not editor or not editor.has_method("get_editor_settings"):
 		return
 	
 	# Wrap around 0 and 360 degrees.
